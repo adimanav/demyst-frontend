@@ -1,4 +1,4 @@
-# DeMyst Frontend Instructions
+# Demyst Frontend Instructions
 
 ## Running From The Command Line
 
