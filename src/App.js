@@ -1,24 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useState, useEffect } from 'react';
+import Application from './components/application.js'
 
 function App() {
+  const [id, setId] = useState(null);
+
+  useEffect(() => {
+    const url = process.env.REACT_APP_BACKEND + 'initiate/';
+    fetch(url, {
+      method: "POST"
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        console.log(data);
+        setId(data.id)
+    })
+    .catch((err) => {
+        console.log(err.message);
+    });
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Application></Application>
   );
 }
 
